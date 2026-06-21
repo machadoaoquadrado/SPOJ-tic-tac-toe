@@ -1,24 +1,63 @@
-# SPOJ - Tic-Tac-Toe Game Validator
+# 🧩 SPOJ - Tic-Tac-Toe Game Validator
 
-This repository contains a professional PHP solution for the Tic-Tac-Toe validation challenge available on the Zabbix developer tasks. The solution has been successfully tested and approved (**Accepted**) by the SPOJ online judge system.
+This project is a PHP solution for the Tic-Tac-Toe validation problem used in the Zabbix developer tasks.
 
-## 🚀 Architectural Decisions & Quality
+It was tested on SPOJ and received an Accepted verdict.
 
-Following standard clean code practices and SOLID principles (specifically the Single Responsibility Principle), the solution was decoupled into three highly cohesive classes:
+---
 
-* **`ReadData`**: Responsible solely for standard I/O streams handling (`STDIN` / file buffers), ensuring memory efficiency while parsing streams line by line.
-* **`Board`**: Acts as a Data Transfer Object (DTO) / Value Object. It encapsulates the board state and matrix generation logic, protecting internal data structure consistency.
-* **`GameValidator`**: Houses the core domain business logic. It orchestrates game validation rules completely detached from how the data was initially read.
+## 🧠 Overview
 
-## 🛠️ Design Patterns & Best Practices Applied
+The goal of the solution is to validate whether a given Tic-Tac-Toe board state is valid according to the game rules.
 
-* **KISS (Keep It Simple, Stupid)**: Avoided over-engineering on matrix lookups. Checking rows, columns, and diagonals directly via coordinate indexes ensures $O(1)$ time complexity and native performance, bypassing heavy PHP array filtering overhead.
-* **Defensive Programming**: Implemented explicit type conversions (`(int)`) and strict comparisons (`===`) to mitigate false positives and unexpected runtime warnings commonly raised by dynamic typing.
-* **Resiliency**: Handles trailing blank lines and EOF discrepancies gracefully, ensuring full compatibility with competitive programming judge automated pipelines.
+The input is read from standard input (or a local file for testing), and multiple boards can be processed in a single run.
 
-## 🏁 How to Run
+---
 
-You can pipe any text fixture containing the challenge standard input structure directly into the script:
+## 🏗️ Structure
+
+The code is split into three main parts:
+
+### ReadData
+
+Handles input reading from either STDIN (SPOJ) or a local file (for testing purposes).  
+It reads the input line by line and deals with empty lines when necessary.
+
+---
+
+### Board
+
+Responsible for building and storing the 3x3 board matrix.  
+It transforms the raw input into a structured format that can be validated.
+
+---
+
+### GameValidator
+
+Contains the game rules and validation logic:
+
+- counts X, O and empty cells  
+- checks valid turn order  
+- verifies winning conditions (rows, columns, diagonals)  
+- ensures the board state is consistent  
+
+---
+
+## 📌 Notes
+
+- The board size is fixed to 3x3, as required by the problem.
+- Input is assumed to follow SPOJ format, but there is some handling for empty lines and EOF cases to avoid runtime issues.
+- Strict comparisons (`===`) are used to avoid unexpected type behavior in PHP.
+
+---
+
+## ▶️ How to run
+
+You can run the script changing constant LOCAL_TESTING and using standard input:
+
+```php
+const LOCAL_TESTING = true;
+```
 
 ```bash
 php index.php < input.txt
