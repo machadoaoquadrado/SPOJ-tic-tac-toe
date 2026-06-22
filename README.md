@@ -43,21 +43,23 @@ Contains the game rules and validation logic:
 
 ---
 
-## 📌 Notes
+## 📌 Notes & Compatibility
 
-- The board size is fixed to 3x3, as required by the problem.
-- Input is assumed to follow SPOJ format, but there is some handling for empty lines and EOF cases to avoid runtime issues.
-- Strict comparisons (`===`) are used to avoid unexpected type behavior in PHP.
+- **PHP 7.3.5 Environment:** The SPOJ engine evaluates code using an older PHP version (7.3.5). To ensure total backward compatibility and avoid syntax errors or platform-specific runtime failures, the strict typing directives (`strict_types=1`) and modern return type-hints (like `: self` or `: string`) were omitted or adapted in the submission code.
+- **Fixed Size:** The board size is fixed to 3x3, as required by the problem.
+- **Input Handling:** Input is assumed to follow SPOJ format, but there is some handling for empty lines and EOF cases to avoid runtime issues.
+- **Type Safety:** Strict comparisons (`===`) are used to avoid unexpected type behavior in PHP.
 
 ---
 
 ## ▶️ How to run
 
-You can run the script changing constant LOCAL_TESTING and using standard input:
+You can run the script changing the constant `LOCAL_TESTING` to `true` inside the code to read from a file, or pipe the input directly via terminal:
 
-```php
-const LOCAL_TESTING = true;
-```
-
+**Linux / macOS (Bash):**
 ```bash
 php index.php < input.txt
+```
+**Windows (PowerShell):**
+```powershell
+Get-Content input.txt | php index.php
