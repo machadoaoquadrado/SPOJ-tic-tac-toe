@@ -54,7 +54,7 @@ Contains the game rules and validation logic:
 
 ## ▶️ How to run
 
-You can run the script changing the constant `LOCAL_TESTING` to `true` inside the code to read from a file, or pipe the input directly via terminal:
+You can run the script changing the constant `LOCAL_TESTING` to `true` inside the code to read from a file and pipe the input directly via terminal:
 
 **Linux / macOS (Bash):**
 ```bash
